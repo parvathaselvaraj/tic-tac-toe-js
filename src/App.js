@@ -1,8 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react'
 
 function App() {
+  const [playerOne, setPlayerOne] = useState('X');
+
   return (
+    <div>
     <div className="container">
       <div className="row">
         <div className="cell">
@@ -52,6 +56,10 @@ function App() {
         </div>
       </div>
     </div>
+    <h1>
+    Current Player: {playerOne}
+    </h1>
+  </div>
   );
 }
 

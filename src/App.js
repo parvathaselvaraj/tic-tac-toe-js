@@ -1,90 +1,102 @@
-import logo from "./logo.svg";
 import "./App.css";
-import React, { useState } from "react";
-import _ from "lodash";
+import React from "react";
+
+// import React, { useState } from "react";
+// import _ from "lodash";
+// import TicTacToe from "./Components/TicTacToe.js";
+// import Accordion from "./Components/Accordion.js";
+// import TabBar from "./Components/TabBar.js";
+// import ClickClose from "./Components/ClickClose.js"
+// import BreadCrumb from "./Components/BreadCrumb.js"
+// import ToDoListInput from "./Components/ToDoListInput";
+// import Banner from "./Components/Banner";
+import TableData from "./Components/TableData";
 
 function App() {
-  const [currentPlayer, setCurrentPlayer] = useState("X");
-  const [cellArray, setCellArray] = useState([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
-  const [result, setResult] = useState("");
-
-  const checkResult = (checkArray) => {
-    const winningPositions = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    const winningPosition = _.find(winningPositions, (array) => {
-      return (
-        checkArray[array[0]] === checkArray[array[1]] &&
-        checkArray[array[1]] === checkArray[array[2]] &&
-        checkArray[array[0]] !== null
-      );
-    });
-    if (winningPosition !== undefined) {
-      return checkArray[winningPosition[0]];
-    } else {
-      if (_.every(checkArray, (array) => array !== null)) {
-        return "draw";
-      } else {
-        return null;
-      }
-    }
-  };
-
-  const handleClick = (e, cellIndex) => {
-    setCellArray((array) => {
-      const newArray = [...array];
-      if (newArray[cellIndex] === null) {
-        newArray[cellIndex] = currentPlayer;
-        if (currentPlayer === "X") {
-          setCurrentPlayer("O");
-        } else {
-          setCurrentPlayer("X");
-        }
-      }
-      setResult(checkResult(newArray));
-      
-      return newArray;
-    });
-  };
-
+  // const [visible, setVisible] = useState(true)
   return (
-    <div className="App">
-      <div className="container">
-        <div className="row">
-          {_.map(cellArray, (el, idx) => {
-            return (
-              <div key={idx} className="cell">
-                <div
-                  onClick={(e) => handleClick(e, idx)}
-                  className="cell-content"
-                >
-                  {el}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <div className="play-comment">
-        {(result !== null) ? <h1>Result :{result}</h1> : <h1>Current Player:{currentPlayer}</h1>}
-      </div>
+    <div>
+      {/* <TicTacToe />  */}
+      {/* <Accordion heading="Accordian" content="kfjbsfbsfbksfks"/> */}
+      {/* <Accordion heading="Accordian 2" content="kfjbsfbsfbksfks"/> */}
+      {/* <TabBar tabs={["Home", "Menu", "Nav"]} /> */}
+      {/* <ClickClose /> */}
+      {/* <BreadCrumb tabs={["Menu", "Home", "Settings", "Edit", "Tools"]}/>
+      <ToDoListInput /> */}
+      {/* <Banner message={56 + "jhdjshgfjsdgfjh"} />
+      <Banner
+        hasAction={true}
+        message={56 + "jhdjshgfjsdgfjh"}
+        action={{ onClick: () => console.log("clicked"), text: "hi" }}
+      />
+      <Banner
+        hideBanner={() => setVisible(!visible)}
+        isVisible={visible}
+        hasAction
+        closeButtonText="close"
+        message="hello world "
+        action={{ onClick: () => console.log("clicked"), text: "click here" }}
+      />
+      <Banner
+        message={"Hello"}
+        bannerStyle={{ color: "red", fontWeight: 700 }}
+      />
+      <Banner isVisible={false} message={"heyy"} />
+      <Banner message={"watch movies"} /> */}
+      <TableData
+        data={[
+          {
+            id: 1,
+            first_name: "Con",
+            gender: "Female",
+            language: 35,
+            english: 34,
+            maths: 54,
+            science: 1,
+            social: 64,
+          },
+          {
+            id: 2,
+            first_name: "Rebbecca",
+            gender: "Female",
+            language: 43,
+            english: 90,
+            maths: 65,
+            science: 44,
+            social: 25,
+          },
+          {
+            id: 3,
+            first_name: "Felicity",
+            gender: "Female",
+            language: 42,
+            english: 59,
+            maths: 42,
+            science: 56,
+            social: 8,
+          },
+          {
+            id: 4,
+            first_name: "Faber",
+            gender: "Male",
+            language: 100,
+            english: 97,
+            maths: 99,
+            science: 73,
+            social: 79,
+          },
+          {
+            id: 5,
+            first_name: "Serge",
+            gender: "Male",
+            language: 50,
+            english: 92,
+            maths: 80,
+            science: 14,
+            social: 43,
+          },
+        ]}
+      />
     </div>
   );
 }
